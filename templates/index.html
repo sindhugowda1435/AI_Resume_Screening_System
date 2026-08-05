@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Resume Screener</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-mark">⚡</span>
+        <span class="logo-text">Resume<strong>Screen</strong></span>
+      </div>
+      <p class="tagline">AI-assisted resume screening &mdash; match resumes to a job in seconds</p>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <section class="panel">
+      <h2 class="panel-title">1. Job Description</h2>
+      <textarea id="jobDescription" class="textarea" placeholder="Paste the job description here... include required skills, experience, and responsibilities."></textarea>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title">2. Resume(s)</h2>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="upload">Upload Files</button>
+        <button class="tab-btn" data-tab="paste">Paste Text</button>
+      </div>
+
+      <div class="tab-content active" id="tab-upload">
+        <label class="dropzone" id="dropzone">
+          <input type="file" id="resumeFiles" multiple accept=".pdf,.docx,.txt">
+          <div class="dropzone-inner">
+            <span class="dropzone-icon">📄</span>
+            <p><strong>Click to upload</strong> or drag & drop</p>
+            <p class="dropzone-hint">PDF, DOCX, or TXT &middot; multiple files supported</p>
+          </div>
+        </label>
+        <ul id="fileList" class="file-list"></ul>
+      </div>
+
+      <div class="tab-content" id="tab-paste">
+        <textarea id="resumeText" class="textarea" placeholder="Paste a single resume's text here..."></textarea>
+      </div>
+    </section>
+
+    <div class="action-row">
+      <button id="screenBtn" class="btn-primary">
+        <span id="btnText">Screen Resume(s)</span>
+        <span id="btnSpinner" class="spinner hidden"></span>
+      </button>
+      <p id="errorMsg" class="error-msg hidden"></p>
+    </div>
+
+    <section id="resultsSection" class="panel results-panel hidden">
+      <div class="results-header">
+        <h2 class="panel-title">Results</h2>
+        <div id="jobSkillsTags" class="job-skills"></div>
+      </div>
+      <div id="resultsList" class="results-list"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Scoring blends TF-IDF text similarity with skill-keyword overlap. Built with Flask + scikit-learn.</p>
+  </footer>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
