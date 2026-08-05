@@ -20,7 +20,7 @@ from werkzeug.utils import secure_filename
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-import pypdf
+from pypdf  import PdfReader, pdfReader
 
 # --------------------------------------------------------------------------
 # App config
@@ -68,7 +68,7 @@ def allowed_file(filename: str) -> bool:
 def extract_text_from_pdf(path: str) -> str:
     text_parts = []
     with open(path, "rb") as f:
-        reader = pypdf.PdfReader(f)
+        reader = PdfReader(f)
         for page in reader.pages:
             text_parts.append(page.extract_text() or "")
     return "\n".join(text_parts)
