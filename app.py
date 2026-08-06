@@ -20,7 +20,7 @@ from werkzeug.utils import secure_filename
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from pypdf  import PdfReader, pdfReader
+from pypdf  import PdfReader
 
 # --------------------------------------------------------------------------
 # App config
